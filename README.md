@@ -1,5 +1,5 @@
 # eew_parser.ts
-TypeScript 紧急地震速报(緊急地震速報)电文解析器。单元测试覆盖。
+TypeScript 紧急地震速报(緊急地震速報)电文解析器。单元测试覆盖。PLUM法支持。
 
 ## 使用
 ```typescript
@@ -18,14 +18,14 @@ console.log(test.to_s())
 ## 参考
 * 解析方法来自: [eew_parser](https://github.com/mmasaki/eew_parser)
 * [高度利用者向け緊急地震速報コード電文フォーマット - 緊急地震速報メモ](http://eew.mizar.jp/excodeformat)
+* 配信資料に関する技術情報 第 476 号 - https://www.data.jma.go.jp/add/suishin/jyouhou/pdf/476.pdf
 
 
 ## 附录
 
-### 緊急地震速報（予報）电文例
+### 緊急地震速報（予報）电文格式
 
 ```
-緊急地震速報（予報）
 「aa bb nn yiyimimididihihimimisisi Cnf yoyomomododohohomomososo NDnnnnnnnnnnnnnn
 NCNann JDnnnnnnnnnnnnnn JNnnn kkk nddd edddd hhh mm ss RKn1n2n3n4n5
 RTn1n2n3n4n5 RCn1n2n3n4n5 {EBI [{fff Se1e2e3e4 hhmmss y1y2}…]}
@@ -33,7 +33,7 @@ RTn1n2n3n4n5 RCn1n2n3n4n5 {EBI [{fff Se1e2e3e4 hhmmss y1y2}…]}
 9999=」
 ```
 
-### 緊急地震速報（警報）电文例
+### 緊急地震速報（警報）电文格式
 
 ```
 「aa bb nn yiyimimididihihimimisisi Cnf
