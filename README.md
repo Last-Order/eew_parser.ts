@@ -1,6 +1,7 @@
 # eew_parser.ts
-TypeScript 紧急地震速报(緊急地震速報)电文解析器。单元测试覆盖。PLUM法支持。
-
+纯 TypeScript 紧急地震速报(緊急地震速報)电文解析器。单元测试覆盖。PLUM法支持。无外部依赖。
+## 安装
+`npm install eew-parser --save`
 ## 使用
 ```typescript
 var test = new EEWParser(`37 03 00 170228165003 C11
