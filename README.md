@@ -1,5 +1,5 @@
 # eew_parser.ts
-TypeScript 紧急地震速报(緊急地震速報)电文解析器。
+TypeScript 紧急地震速报(緊急地震速報)电文解析器。单元测试覆盖。
 
 ## 使用
 ```typescript
@@ -22,6 +22,8 @@ console.log(test.to_s())
 
 ## 附录
 
+### 緊急地震速報（予報）电文例
+
 ```
 緊急地震速報（予報）
 「aa bb nn yiyimimididihihimimisisi Cnf yoyomomododohohomomososo NDnnnnnnnnnnnnnn
@@ -30,8 +32,10 @@ RTn1n2n3n4n5 RCn1n2n3n4n5 {EBI [{fff Se1e2e3e4 hhmmss y1y2}…]}
 {ECI [{fffff Se1e2e3e4 hhmmss y1y2}…]} {EII [{fffffff Se1e2e3e4 hhmmss y1y2}…]}
 9999=」
 ```
+
+### 緊急地震速報（警報）电文例
+
 ```
-緊急地震速報（警報）
 「aa bb nn yiyimimididihihimimisisi Cnf
 yoyomomododohohomomososo
 NDnnnnnnnnnnnnnn NCPNnn
