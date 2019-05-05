@@ -127,7 +127,7 @@ describe('Parsing Non-Wanrning EEW / 非警报 EEW 解析', () => {
             expect(EEW.isSea).to.equal(false);
             expect(EEW.landOrSea).to.equal('陸域')
         });
-        it('Forecast Method / 预报首发', () => {
+        it('Forecast Method / 预报方法', () => {
             expect(EEW.forecastMethod).to.equal('未設定');
         });
         it('Maximum Seismic Intensity Change Flag / 最大预测震度变化标记', () => {
