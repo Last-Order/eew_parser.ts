@@ -487,8 +487,14 @@ export default class EEWParser {
         let nowIndex = 0;
         while(nowIndex < ebiPart.length - 4) {
             const areaName = Definitions.AreaCode[utils.fastsub(ebiPart, nowIndex, 3)];
-            const minimumSeismicIntensity = Definitions.SeismicIntensity[utils.fastsub(ebiPart, nowIndex + 5, 2)];
-            const maximumSeismicIntensity = Definitions.SeismicIntensity[utils.fastsub(ebiPart, nowIndex + 7, 2)];
+            let minimumSeismicIntensity, maximumSeismicIntensity;
+            if (utils.fastsub(ebiPart, nowIndex + 7, 2) === '//') {
+                minimumSeismicIntensity = Definitions.SeismicIntensity[utils.fastsub(ebiPart, nowIndex + 5, 2)];
+                maximumSeismicIntensity = Definitions.SeismicIntensity['//'];
+            } else {
+                minimumSeismicIntensity = Definitions.SeismicIntensity[utils.fastsub(ebiPart, nowIndex + 7, 2)]
+                maximumSeismicIntensity = Definitions.SeismicIntensity[utils.fastsub(ebiPart, nowIndex + 5, 2)]
+            }
             const baseTime = this.earthquakeTime;
             let arrivalTime = undefined;
             if (utils.fastsub(ebiPart, nowIndex + 10, 6) !== "//////") {
