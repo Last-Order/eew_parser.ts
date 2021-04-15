@@ -139,7 +139,7 @@ describe('Parsing Non-Wanrning EEW / 非警报 EEW 解析', () => {
             expect(EEW.maximumSeismicIntensityChangeReason).to.equal('変化なし');
         });
         describe('Estimate Seismic Intensity Information By Region / 最大震度预测(地区)', () => {
-            const EBIData = EEW.ebi;
+            const EBIData = EEW.warningDetails;
             expect(EBIData.length).to.equal(4);
             it('Estimate Seismic Intensity Area Name / 最大预测震度(地区) - 地区名', () => {
                 expect(EBIData[0].areaName).to.equal('静岡県伊豆');
@@ -195,16 +195,16 @@ describe('Parsing Warning EEW', () => {
     it('Warning Area / 警报地域', () => {
         expect(EEW.warningArea).to.deep.equal(["三重県南部","和歌山県南部","和歌山県北部","三重県中部","福井県嶺北","福井県嶺南","岐阜県美濃中西部","静岡県中部","静岡県西部","愛知県東部","愛知県西部","三重県北部","滋賀県北部","滋賀県南部","京都府北部","京都府南部","大阪府北部","大阪府南部","兵庫県南東部","兵庫県南西部","兵庫県淡路島","奈良県","徳島県北部","徳島県南部","香川県東部","高知県東部","高知県中部","岡山県南部","香川県西部"]);
     });
-    // it('Stringify', () => {
-    //     console.log('警报地方:');
-    //     console.log(EEW.warningRegion.join(' '));
-    //     console.log('警报都道府県:');
-    //     console.log(EEW.warningPrefecture.join(' '));
-    //     console.log('警报地域:');
-    //     console.log(EEW.warningArea.join(' '));
-    //     console.log('预报:');
-    //     for (const i of EEW.ebi) {
-    //         console.log(`${i.areaName}\n到达时间:${i.arrivalTime}  预计震度: ${i.seismicIntensity.min}~${i.seismicIntensity.max}   ${i.arrival}/${i.type}`)
-    //     }
-    // })
+    it('Stringify', () => {
+        console.log('警报地方:');
+        console.log(EEW.warningRegion.join(' '));
+        console.log('警报都道府県:');
+        console.log(EEW.warningPrefecture.join(' '));
+        console.log('警报地域:');
+        console.log(EEW.warningArea.join(' '));
+        console.log('预报:');
+        for (const i of EEW.warningDetails) {
+            console.log(`${i.areaName}\n到达时间:${i.arrivalTime}  预计震度: ${i.seismicIntensity.min}~${i.seismicIntensity.max}   ${i.arrival}/${i.type}`)
+        }
+    })
 });

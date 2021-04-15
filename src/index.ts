@@ -17,6 +17,17 @@ export interface ParsedTelegram {
     forecast: string;
 }
 
+export interface WarningInfo {
+    areaName: string;
+    seismicIntensity: {
+        min: string;
+        max: string;
+    },
+    arrivalTime: Date;
+    type: string;
+    arrival: string;
+}
+
 /**
  * Warning Only Property Decorator
  * @returns {(target, propertyKey: string, descriptor: PropertyDescriptor) => void}
@@ -477,8 +488,11 @@ export default class EEWParser {
         }
     }
 
-    get ebi() {
-        const result = [];
+    /**
+     * 警报详细信息
+     */
+    get warningDetails(): WarningInfo[] {
+        const result: WarningInfo[] = [];
         if (this.parsedTelegram.forecast.indexOf('EBI') === -1) {
             return result;
         }
@@ -606,7 +620,7 @@ export default class EEWParser {
     }
 
     @warningOnly()
-    get additionalWarningRegion() {
+    get additionalWarningRegion(): string[] {
         const startIndex = this.parsedTelegram.warning.indexOf('CAI') + 4;
         const endIndex = this.parsedTelegram.warning.indexOf('CPI') - 1;
         const CAIPart = this.parsedTelegram.warning.slice(startIndex, endIndex);
@@ -621,7 +635,7 @@ export default class EEWParser {
     }
 
     @warningOnly()
-    get additionalWarningPrefecture() {
+    get additionalWarningPrefecture(): string[] {
         const startIndex = this.parsedTelegram.warning.indexOf('CPI') + 4;
         const endIndex = this.parsedTelegram.warning.indexOf('CBI') - 1;
         const CPIPart = this.parsedTelegram.warning.slice(startIndex, endIndex);
@@ -636,7 +650,7 @@ export default class EEWParser {
     }
 
     @warningOnly()
-    get additionalWarningArea() {
+    get additionalWarningArea(): string[] {
         const startIndex = this.parsedTelegram.warning.indexOf('CBI') + 4;
         const endIndex = this.parsedTelegram.warning.indexOf('PAI') - 1;
         const CBIPart = this.parsedTelegram.warning.slice(startIndex, endIndex);
@@ -651,7 +665,7 @@ export default class EEWParser {
     }
 
     @warningOnly()
-    get warningRegion() {
+    get warningRegion(): string[] {
         const startIndex = this.parsedTelegram.warning.indexOf('PAI') + 4;
         const endIndex = this.parsedTelegram.warning.indexOf('PPI') - 1;
         const PAIPart = this.parsedTelegram.warning.slice(startIndex, endIndex);
@@ -666,7 +680,7 @@ export default class EEWParser {
     }
 
     @warningOnly()
-    get warningPrefecture() {
+    get warningPrefecture(): string[] {
         const startIndex = this.parsedTelegram.warning.indexOf('PPI') + 4;
         const endIndex = this.parsedTelegram.warning.indexOf('PBI') - 1;
         const PPIPart = this.parsedTelegram.warning.slice(startIndex, endIndex);
@@ -681,7 +695,7 @@ export default class EEWParser {
     }
 
     @warningOnly()
-    get warningArea() {
+    get warningArea(): string[] {
         const startIndex = this.parsedTelegram.warning.indexOf('PBI') + 4;
         const endIndex = this.parsedTelegram.warning.lastIndexOf('NCP') - 1;
         const PBIPart = this.parsedTelegram.warning.slice(startIndex, endIndex);
